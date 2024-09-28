@@ -139,7 +139,6 @@
                         <div class="ps-4">
                             <h5 class="text-primary mb-0">Anos De Experiência</h5>
                             <h1 class="mb-0" data-toggle="counter-up">46</h1>
-                            <h1 class="mb-0" data-toggle="counter-up">46</h1>
                         </div>
                     </div>
                 </div>
@@ -548,16 +547,32 @@
         window.addEventListener('scroll', function () {
             const logo = document.getElementById('logo');
             const navbar = document.querySelector('.navbar');
+            const isMobileOrTablet = window.innerWidth <= 768; // Define mobile/tablet width
 
-            if (window.scrollY > 0) {
-                logo.classList.remove('logo-white'); // Change to original color
+            if (window.scrollY > 0 || isMobileOrTablet) {
+                logo.classList.remove('logo-white'); // Change to red for mobile or when scrolling
                 logo.classList.add('logo-red');
             } else {
-                logo.classList.remove('logo-red'); // Change back to white
+                logo.classList.remove('logo-red'); // Change back to white for desktop and no scroll
+                logo.classList.add('logo-white');
+            }
+        });
+
+        // Also check on resize in case the user resizes the window
+        window.addEventListener('resize', function () {
+            const logo = document.getElementById('logo');
+            const isMobileOrTablet = window.innerWidth <= 768; // Define mobile/tablet width
+
+            if (isMobileOrTablet) {
+                logo.classList.remove('logo-white');
+                logo.classList.add('logo-red');
+            } else {
+                logo.classList.remove('logo-red');
                 logo.classList.add('logo-white');
             }
         });
     </script>
+
 
 
     <!-- JavaScript Libraries -->
