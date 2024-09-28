@@ -21,9 +21,11 @@
     0% {
         -webkit-transform: perspective(120px)
     }
+
     50% {
         -webkit-transform: perspective(120px) rotateY(180deg)
     }
+
     100% {
         -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg)
     }
@@ -34,10 +36,12 @@
         transform: perspective(120px) rotateX(0deg) rotateY(0deg);
         -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
     }
+
     50% {
         transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
         -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
     }
+
     100% {
         transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
         -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
@@ -130,6 +134,7 @@ h6,
     margin-left: 25px;
     padding: 35px 0;
     color: #FFFFFF;
+    /* Default link color */
     font-size: 18px;
     font-weight: 600;
     outline: none;
@@ -139,6 +144,7 @@ h6,
 .sticky-top.navbar-dark .navbar-nav .nav-link {
     padding: 20px 0;
     color: var(--dark);
+    /* Color when scrolled */
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
@@ -148,11 +154,23 @@ h6,
 
 .navbar-dark .navbar-brand h1 {
     color: #FFFFFF;
+    /* Default text color */
 }
 
 .navbar-dark .navbar-toggler {
     color: var(--primary) !important;
     border-color: var(--primary) !important;
+}
+
+/* New styles for the logo */
+.logo-red {
+    filter: none;
+    /* Default to white (no filter) */
+}
+
+.logo-white {
+    filter: brightness(0) invert(1);
+    /* Makes logo white */
 }
 
 @media (max-width: 991.98px) {
@@ -182,7 +200,7 @@ h6,
         border-bottom: 1px solid rgba(256, 256, 256, .1);
         z-index: 999;
     }
-    
+
     .sticky-top.navbar-dark {
         position: fixed;
         background: #FFFFFF;
@@ -216,6 +234,34 @@ h6,
 
 
 /*** Carousel ***/
+.brand-carousel .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 200px;
+    /* Define uma altura fixa para centralização */
+    padding: 10px;
+}
+
+/* Limita as imagens a uma dimensão máxima */
+.brand-carousel .item img {
+    max-height: 120px;
+    /* Altura máxima para as imagens */
+    max-width: 150px;
+    /* Largura máxima */
+    object-fit: contain;
+    /* Garante que a imagem seja redimensionada proporcionalmente */
+    transition: filter 0.3s ease;
+}
+
+.brand-carousel .center img {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
 .carousel-caption {
     top: 0;
     left: 0;
@@ -298,15 +344,48 @@ h6,
 }
 
 @-webkit-keyframes section-title-run {
-    0% {left: 0; } 50% { left : 145px; } 100% { left: 0; }
+    0% {
+        left: 0;
+    }
+
+    50% {
+        left: 145px;
+    }
+
+    100% {
+        left: 0;
+    }
 }
 
 @-webkit-keyframes section-title-run-center {
-    0% { left: 50%; margin-left: -75px; } 50% { left : 50%; margin-left: 45px; } 100% { left: 50%; margin-left: -75px; }
+    0% {
+        left: 50%;
+        margin-left: -75px;
+    }
+
+    50% {
+        left: 50%;
+        margin-left: 45px;
+    }
+
+    100% {
+        left: 50%;
+        margin-left: -75px;
+    }
 }
 
 @-webkit-keyframes section-title-run-sm {
-    0% {left: 0; } 50% { left : 85px; } 100% { left: 0; }
+    0% {
+        left: 0;
+    }
+
+    50% {
+        left: 85px;
+    }
+
+    100% {
+        left: 0;
+    }
 }
 
 
@@ -444,14 +523,26 @@ h6,
     transition: .3s .15s;
 }
 
-.team-item .team-img img,
-.blog-item .blog-img img  {
-    transition: .5s;
+
+.blog-img {
+    overflow: hidden;
+    /* Garante que a imagem não exceda o container */
+    position: relative;
 }
 
-.team-item:hover .team-img img,
-.blog-item:hover .blog-img img {
-    transform: scale(1.15);
+.blog-img img {
+    position: absolute;
+    /* Faz com que a imagem cubra todo o container */
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    /* Faz a imagem ocupar 100% da largura */
+    height: 100%;
+    /* Faz a imagem ocupar 100% da altura */
+    object-fit: cover;
+    /* Faz a imagem cobrir completamente o espaço, cortando a imagem se necessário */
+    transform: translate(-50%, -50%);
+    /* Centraliza a imagem */
 }
 
 

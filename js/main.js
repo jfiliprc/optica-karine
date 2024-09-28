@@ -60,19 +60,6 @@
     });
 
 
-    // Back to top button
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            $('.back-to-top').fadeIn('slow');
-        } else {
-            $('.back-to-top').fadeOut('slow');
-        }
-    });
-    $('.back-to-top').click(function () {
-        $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
-        return false;
-    });
-
 
     // Testimonials carousel
     $(".testimonial-carousel").owlCarousel({
@@ -95,6 +82,32 @@
                 items: 3
             }
         }
+    });
+
+
+    $(document).ready(function () {
+        $('.brand-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false  // Remove os botões "Next" e "Prev" em telas pequenas
+                },
+                600: {
+                    items: 3,
+                    nav: false  // Também remove em telas médias menores
+                },
+                1000: {
+                    items: 5,
+                    nav: false  // Mostra os botões em telas maiores
+                }
+            }
+        });
+
     });
 
 
