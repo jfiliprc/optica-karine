@@ -162,6 +162,24 @@ h6,
     border-color: var(--primary) !important;
 }
 
+@media (max-width: 768px) {
+
+    /* Adjust for mobile */
+    .navbar-toggler {
+        margin: auto !important;
+        /* Center the button */
+        display: block !important;
+        /* Make sure it's a block element */
+    }
+
+    .navbar-nav {
+        width: 100% !important;
+        /* Make navbar-nav take full width */
+        justify-content: center !important;
+        /* Center the items in the nav */
+    }
+}
+
 /* New styles for the logo */
 .logo-red {
     filter: none;

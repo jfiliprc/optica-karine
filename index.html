@@ -544,34 +544,44 @@
     </a>
 
     <script>
-        window.addEventListener('scroll', function () {
+        function updateLogo() {
             const logo = document.getElementById('logo');
-            const navbar = document.querySelector('.navbar');
-            const isMobileOrTablet = window.innerWidth <= 768; // Define mobile/tablet width
+            const isMobileOrTablet = window.innerWidth <= 768; // Mobile/tablet width threshold
 
-            if (window.scrollY > 0 || isMobileOrTablet) {
-                logo.classList.remove('logo-white'); // Change to red for mobile or when scrolling
-                logo.classList.add('logo-red');
-            } else {
-                logo.classList.remove('logo-red'); // Change back to white for desktop and no scroll
-                logo.classList.add('logo-white');
-            }
-        });
-
-        // Also check on resize in case the user resizes the window
-        window.addEventListener('resize', function () {
-            const logo = document.getElementById('logo');
-            const isMobileOrTablet = window.innerWidth <= 768; // Define mobile/tablet width
+            // Always ensure the logo is visible by adding a visibility class
+            logo.style.visibility = 'visible';
 
             if (isMobileOrTablet) {
+                // Always red on mobile/tablet
                 logo.classList.remove('logo-white');
                 logo.classList.add('logo-red');
             } else {
-                logo.classList.remove('logo-red');
-                logo.classList.add('logo-white');
+                // For larger screens, change logo color based on scroll
+                if (window.scrollY > 0) {
+                    logo.classList.remove('logo-white');
+                    logo.classList.add('logo-red');
+                } else {
+                    logo.classList.remove('logo-red');
+                    logo.classList.add('logo-white');
+                }
             }
+        }
+
+        // Ensure the logo is visible from the beginning
+        document.addEventListener('DOMContentLoaded', function () {
+            const logo = document.getElementById('logo');
+            // Make sure the logo is visible by setting visibility explicitly
+            logo.style.visibility = 'visible';
+            updateLogo(); // Call the function on page load to apply the correct initial state
         });
+
+        // Update logo on scroll (for larger screens only)
+        window.addEventListener('scroll', updateLogo);
+
+        // Update logo on resize (to handle screen size changes)
+        window.addEventListener('resize', updateLogo);
     </script>
+
 
 
 
